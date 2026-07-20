@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "auratest"
+version = "0.1.0"
+authors = [
+  { name="Rafly A.R", email="ginganomercy@example.com" },
+]
+description = "Test-Driven Development (TDD) framework for AI and Probabilistic Models."
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "numpy>=1.20.0"
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+]
