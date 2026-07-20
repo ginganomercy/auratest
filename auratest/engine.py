@@ -1,28 +1,25 @@
 import numpy as np
-from typing import Tuple
+from typing import Iterator
 
-def perturb_feature_incremental(
+def generate_incremental_perturbations(
     data: np.ndarray, 
     feature_index: int, 
     steps: int = 5, 
     step_size: float = 1.0
-) -> np.ndarray:
+) -> Iterator[np.ndarray]:
     """
-    Generates perturbed copies of the data where the target feature is incrementally increased.
-    Returns an array of shape (N * steps, features).
+    Yields perturbed copies of the data incrementally.
+    Uses a generator to prevent Out-Of-Memory (OOM) errors on massive datasets.
     """
     if not isinstance(data, np.ndarray):
         raise TypeError("AuraTest requires input data to be a NumPy array.")
         
-    perturbed_sets = []
     for step in range(steps):
         # Create a deep copy to avoid memory leakage/mutation
         modified_data = data.copy()
         # Increment the specific feature
         modified_data[:, feature_index] += (step * step_size)
-        perturbed_sets.append(modified_data)
-        
-    return np.vstack(perturbed_sets)
+        yield modified_data
 
 def perturb_feature_random(
     data: np.ndarray, 
@@ -30,7 +27,7 @@ def perturb_feature_random(
     noise_std: float = 1.0
 ) -> np.ndarray:
     """
-    Generates a copy of the data where the target feature is randomized (for invariance testing).
+    Generates a copy of the data where the target feature is randomized.
     """
     if not isinstance(data, np.ndarray):
         raise TypeError("AuraTest requires input data to be a NumPy array.")
@@ -45,7 +42,7 @@ def add_global_noise(
     noise_std: float = 0.01
 ) -> np.ndarray:
     """
-    Adds Gaussian noise to all features (for robustness testing).
+    Adds Gaussian noise to all features.
     """
     if not isinstance(data, np.ndarray):
         raise TypeError("AuraTest requires input data to be a NumPy array.")
