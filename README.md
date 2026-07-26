@@ -64,6 +64,11 @@ AuraTest is an open-source project built out of passion. If it has saved you fro
 
 ---
 
+## 👨‍💻 Author
+**Rafly A.R**
+📧 Email: raflypriyantoro@gmail.com
+📸 Instagram: [@galaxy_scream](https://instagram.com/galaxy_scream)
+
 ## Contributing & Testing
 
 We welcome PRs! To run the test suite locally and verify your changes:
